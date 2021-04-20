@@ -6,7 +6,7 @@ import store from './store/store';
 
 const App = () => (
   <Provider store={store}>
-
+    <div>Hello World!</div>
   </Provider>
 );
 
