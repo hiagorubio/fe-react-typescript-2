@@ -3,9 +3,9 @@ import { createStyles } from "@material-ui/core/styles";
 const styles = createStyles({
   headerContainer: {
     backgroundColor: "#FFFFFF",
-    padding: "0 24px",
     textAlign: "center",
     heigth: "40px",
+    padding: "0 30px",
   },
   title: {
     textAlign: "center",

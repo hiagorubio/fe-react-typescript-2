@@ -26,6 +26,7 @@
     "redux": "4.0.5",
     "redux-observable": "1.2.0",
     "rxjs": "6.6.7",
+    "src": "1.1.2",
     "typesafe-actions": "5.1.0",
     "typescript": "3.8.3"
   },
