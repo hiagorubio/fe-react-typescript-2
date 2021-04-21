@@ -2,7 +2,7 @@ import { createStyles } from "@material-ui/core/styles";
 
 const styles = createStyles({
   userCard: {
-    height: "76px",
+    minHeight: "76px",
   },
   loginText: {
     color: "#262626",

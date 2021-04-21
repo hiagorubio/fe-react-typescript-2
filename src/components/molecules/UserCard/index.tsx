@@ -3,6 +3,7 @@ import {
   Button,
   Divider,
   Grid,
+  Link,
   Typography,
   WithStyles,
   withStyles,
@@ -13,17 +14,28 @@ import { GitHubMarkIcon } from "../../../assets/Icons";
 
 interface OwnProps {
   onClick: () => void;
+  login: string;
+  avatarUrl: string;
+  gitHubPage: string;
+  id: number;
 }
 
 type Card = OwnProps & WithStyles<typeof styles>;
 
-export const UserCard = ({ classes, onClick }: Card) => (
+export const UserCard = ({
+  classes,
+  onClick,
+  login,
+  avatarUrl,
+  gitHubPage,
+  id,
+}: Card) => (
   <Card buttonText="Details" onClick={onClick}>
     <Grid container className={classes.userCard}>
       <Grid item className={classes.avatarArea}>
         <img
-          src="https://avatars.githubusercontent.com/u/101?v=4"
-          alt="userImage"
+          src={avatarUrl}
+          alt={`${login} GitHub avatar`}
           width="76px"
           height="76px"
         />
@@ -32,18 +44,20 @@ export const UserCard = ({ classes, onClick }: Card) => (
       <Grid item>
         <Grid container direction="column">
           <Grid item className={classes.loginTextArea}>
-            <Typography className={classes.loginText}>@userlogin</Typography>
+            <Typography className={classes.loginText}>{login}</Typography>
           </Grid>
 
           <Grid item className={classes.idArea}>
             <Badge backgroundColor="#B3D1FF" color="#0047B3" text="Team A" />
-            <Typography className={classes.idText}>ID: #9</Typography>
+            <Typography className={classes.idText}>ID: #{id}</Typography>
           </Grid>
 
           <Grid item>
-            <Typography className={classes.text}>
-              <GitHubMarkIcon fill="#BDBDBD" size="14px" /> GitHub page
-            </Typography>
+            <Link href={gitHubPage}>
+              <Typography className={classes.text} variant="button">
+                <GitHubMarkIcon fill="#BDBDBD" size="14px" /> GitHub page
+              </Typography>
+            </Link>
           </Grid>
         </Grid>
       </Grid>

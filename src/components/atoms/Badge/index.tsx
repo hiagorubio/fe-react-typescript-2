@@ -1,12 +1,5 @@
-import React, { ReactNode } from "react";
-import {
-  Button,
-  Divider,
-  Grid,
-  Typography,
-  WithStyles,
-  withStyles,
-} from "@material-ui/core";
+import React from "react";
+import { Grid, Typography, WithStyles, withStyles } from "@material-ui/core";
 import styles from "./styles";
 
 interface OwnProps {

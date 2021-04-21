@@ -1,33 +1,59 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Grid, WithStyles, withStyles } from "@material-ui/core";
 import { bindActionCreators, Dispatch } from "redux";
-import styles from "./styles";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Page } from "../../templates";
 import { UserCard } from "../../molecules";
+import { fetchUsers } from "../../../redux/modules/users";
+import { State } from "../../../redux/types";
+import { User } from "../../../redux/modules/users/types";
+import styles from "./styles";
 
-export const HomePage = ({ classes }: WithStyles<typeof styles>) => (
-  <Page>
-    <Grid container className={classes.users} spacing={4}>
-      <Grid item xs={4}>
-        <UserCard />
-      </Grid>
+interface DispatchProps {
+  fetchUsers(): void;
+  users: User[];
+}
 
-      <Grid item xs={4}>
-        <UserCard />
-      </Grid>
+type Props = DispatchProps & WithStyles<typeof styles>;
 
-      <Grid item xs={4}>
-        <UserCard />
-      </Grid>
-    </Grid>
-  </Page>
-);
+export const HomePage = ({ classes, fetchUsers, users }: Props) => {
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
-const mapStateToProps = () => ({});
+  return (
+    <Page>
+      <InfiniteScroll
+        dataLength={users.length}
+        hasMore
+        next={() => fetchUsers()}
+        loader={<h4>Loading...</h4>}
+      >
+        <Grid container className={classes.users} spacing={2}>
+          {users.map((user) => (
+            <Grid item xs={12} sm={6} md={4} key={user.id}>
+              <UserCard
+                onClick={() => {}}
+                login={user.login}
+                avatarUrl={user.avatar_url}
+                gitHubPage={user.html_url}
+                id={user.id}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </InfiniteScroll>
+    </Page>
+  );
+};
+
+const mapStateToProps = (state: State) => ({
+  users: state.usersStore.users,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators({}, dispatch);
+  bindActionCreators({ fetchUsers }, dispatch);
 
 export default connect(
   mapStateToProps,

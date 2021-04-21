@@ -1,36 +1,41 @@
 import { Action } from "typesafe-actions";
 import { from, Observable } from "rxjs";
 import { catchError, map, mergeMap } from "rxjs/operators";
-import { ofType } from "redux-observable";
+import { ofType, StateObservable } from "redux-observable";
 import { Reducer } from "redux";
 import { UserState, User, ACTION_TYPES } from "./types";
+import { State } from "../../types";
 import axios from "axios";
 
 const INITITAL_SATE: UserState = {
   users: [],
   loading: false,
   error: false,
+  since: 0,
 };
 
-export const fetchUser = (username: string) => ({
+export const fetchUsers = (since: number) => ({
   type: ACTION_TYPES.FETCH_USER,
-  payload: username,
+  payload: since,
 });
 
-export const fetchUserSuccess = (payload: User[]) => ({
+export const fetchUsersSuccess = (payload: User[]) => ({
   type: ACTION_TYPES.SUCCESS,
   payload,
 });
 
-export const fetchUserError = () => ({ type: ACTION_TYPES.ERROR });
+export const fetchUsersError = () => ({ type: ACTION_TYPES.ERROR });
 
 const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
   switch (action.type) {
     case ACTION_TYPES.SUCCESS:
+      const newUsers = [...state.users];
+      newUsers.push(...action.payload);
       return {
         ...state,
-        users: action.payload,
+        users: newUsers,
         loading: true,
+        since: state.since + 30,
       };
     case ACTION_TYPES.ERROR:
       return {
@@ -47,14 +52,19 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
 export default reducer;
 
 export const fetchUserEpic = (
-  action$: Observable<Action>
+  action$: Observable<Action>,
+  state$: StateObservable<State>
 ): Observable<Action> =>
   action$.pipe(
     ofType(ACTION_TYPES.FETCH_USER),
     mergeMap(() =>
-      from(axios.get("https://api.github.com/users?per_page=50&since=1")).pipe(
-        map((response) => fetchUserSuccess(response.data)),
-        catchError(() => fetchUserError)
+      from(
+        axios.get(
+          `https://api.github.com/users?per_page=30&since=${state$.value.usersStore.since}`
+        )
+      ).pipe(
+        map((response) => fetchUsersSuccess(response.data)),
+        catchError(() => fetchUsersError)
       )
     )
   );
