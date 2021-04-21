@@ -24,6 +24,9 @@
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
+    "redux-observable": "1.2.0",
+    "rxjs": "6.6.7",
+    "typesafe-actions": "5.1.0",
     "typescript": "3.8.3"
   },
   "postcss": {
