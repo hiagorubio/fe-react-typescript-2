@@ -8,7 +8,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import styles from "./styles";
-import { Card } from "../../atoms";
+import { Badge, Card } from "../../atoms";
 import { GitHubMarkIcon } from "../../../assets/Icons";
 
 interface OwnProps {
@@ -35,8 +35,9 @@ export const UserCard = ({ classes, onClick }: Card) => (
             <Typography className={classes.loginText}>@userlogin</Typography>
           </Grid>
 
-          <Grid item>
-            <Typography className={classes.text}>ID: #9</Typography>
+          <Grid item className={classes.idArea}>
+            <Badge backgroundColor="#B3D1FF" color="#0047B3" text="Team A" />
+            <Typography className={classes.idText}>ID: #9</Typography>
           </Grid>
 
           <Grid item>

@@ -5,14 +5,19 @@ const styles = createStyles({
     height: "76px",
   },
   loginText: {
-    color: "#737373",
-    fontSize: "14px",
+    color: "#262626",
+    fontSize: "18px",
   },
   text: {
-    color: "#BDBDBD",
+    color: "#999999",
     fontSize: "12px",
     display: "flex",
     alignItems: "center",
+  },
+  idText: {
+    color: "#999999",
+    fontSize: "12px",
+    marginLeft: "6px",
   },
   avatarArea: {
     borderTRadius: "4px",
@@ -23,6 +28,10 @@ const styles = createStyles({
   },
   loginTextArea: {
     marginBottom: "6px",
+  },
+  idArea: {
+    display: "flex",
+    alignItems: "center",
   },
 });
 
