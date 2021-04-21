@@ -5,6 +5,7 @@ const styles = createStyles({
     backgroundColor: "#FFFFFF",
     padding: "0 24px",
     textAlign: "center",
+    heigth: "40px",
   },
   title: {
     textAlign: "center",
