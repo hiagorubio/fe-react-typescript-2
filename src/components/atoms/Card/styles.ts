@@ -13,7 +13,9 @@ const styles = createStyles({
   cardChildren: {
     padding: "20px",
   },
-  buttonArea: {},
+  buttonArea: {
+    padding: "6px 0",
+  },
   button: {
     width: "100%",
   },

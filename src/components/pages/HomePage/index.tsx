@@ -4,89 +4,21 @@ import { Grid, WithStyles, withStyles } from "@material-ui/core";
 import { bindActionCreators, Dispatch } from "redux";
 import styles from "./styles";
 import { Page } from "../../templates";
-import { Card } from "../../atoms";
+import { UserCard } from "../../molecules";
 
 export const HomePage = ({ classes }: WithStyles<typeof styles>) => (
   <Page>
-    <Grid container className={classes.users} spacing={3}>
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
+    <Grid container className={classes.users} spacing={4}>
+      <Grid item xs={4}>
+        <UserCard />
       </Grid>
 
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
+      <Grid item xs={4}>
+        <UserCard />
       </Grid>
 
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
-      </Grid>
-
-      <Grid item xs={3}>
-        <Card buttonText="Details" onClick={() => {}} />
+      <Grid item xs={4}>
+        <UserCard />
       </Grid>
     </Grid>
   </Page>
