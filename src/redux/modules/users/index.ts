@@ -60,7 +60,12 @@ export const fetchUserEpic = (
     mergeMap(() =>
       from(
         axios.get(
-          `https://api.github.com/users?per_page=30&since=${state$.value.usersStore.since}`
+          `https://api.github.com/users?per_page=30&since=${state$.value.usersStore.since}`,
+          {
+            headers: {
+              Authorization: "Bearer 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",
+            },
+          }
         )
       ).pipe(
         map((response) => fetchUsersSuccess(response.data)),

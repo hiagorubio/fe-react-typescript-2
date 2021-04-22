@@ -11,6 +11,14 @@ const theme = createMuiTheme({
       xl: 1920,
     },
   },
+  palette: {
+    primary: {
+      main: "#262626",
+    },
+    secondary: {
+      main: "#999999",
+    },
+  },
 });
 
 interface OwnProps {

@@ -6,6 +6,7 @@ const styles = createStyles({
     maxWidth: "1130px",
     margin: "auto",
   },
+  loader: { width: "100%", height: "100%" },
 });
 
 export default styles;

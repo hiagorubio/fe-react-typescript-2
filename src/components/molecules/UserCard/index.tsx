@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import {
   Button,
   Divider,
@@ -11,6 +11,7 @@ import {
 import styles from "./styles";
 import { Badge, Card } from "../../atoms";
 import { GitHubMarkIcon } from "../../../assets/Icons";
+import { Skeleton } from "@material-ui/lab";
 
 interface OwnProps {
   onClick: () => void;
@@ -29,40 +30,47 @@ export const UserCard = ({
   avatarUrl,
   gitHubPage,
   id,
-}: Card) => (
-  <Card buttonText="Details" onClick={onClick}>
-    <Grid container className={classes.userCard}>
-      <Grid item className={classes.avatarArea}>
-        <img
-          src={avatarUrl}
-          alt={`${login} GitHub avatar`}
-          width="76px"
-          height="76px"
-        />
-      </Grid>
+}: Card) => {
+  const [isImgLoaded, setIsImgLoaded] = useState(false);
+  return (
+    <Card buttonText="Details" onClick={onClick}>
+      <Grid container className={classes.userCard}>
+        <Grid item className={classes.avatarArea}>
+          {!isImgLoaded && <Skeleton variant="rect" width={76} height={76} />}
 
-      <Grid item>
-        <Grid container direction="column">
-          <Grid item className={classes.loginTextArea}>
-            <Typography className={classes.loginText}>{login}</Typography>
-          </Grid>
+          <img
+            src={avatarUrl}
+            alt={`${login} GitHub avatar`}
+            width="76px"
+            height="76px"
+            onLoad={() => setIsImgLoaded(true)}
+            hidden={!isImgLoaded}
+          />
+        </Grid>
 
-          <Grid item className={classes.idArea}>
-            <Badge backgroundColor="#B3D1FF" color="#0047B3" text="Team A" />
-            <Typography className={classes.idText}>ID: #{id}</Typography>
-          </Grid>
+        <Grid item>
+          <Grid container direction="column">
+            <Grid item className={classes.loginTextArea}>
+              <Typography className={classes.loginText}>{login}</Typography>
+            </Grid>
 
-          <Grid item>
-            <Link href={gitHubPage}>
-              <Typography className={classes.text} variant="button">
-                <GitHubMarkIcon fill="#BDBDBD" size="14px" /> GitHub page
-              </Typography>
-            </Link>
+            <Grid item className={classes.idArea}>
+              <Badge backgroundColor="#B3D1FF" color="#0047B3" text="Team A" />
+              <Typography className={classes.idText}>ID: #{id}</Typography>
+            </Grid>
+
+            <Grid item>
+              <Link href={gitHubPage}>
+                <Typography className={classes.text} variant="button">
+                  <GitHubMarkIcon fill="#BDBDBD" size="14px" /> GitHub page
+                </Typography>
+              </Link>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
-  </Card>
-);
+    </Card>
+  );
+};
 
 export default withStyles(styles)(UserCard);
