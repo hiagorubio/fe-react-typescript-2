@@ -1,24 +1,6 @@
 import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles({
-  userCard: {
-    minHeight: '76px',
-  },
-  loginText: {
-    color: '#262626',
-    fontSize: '18px',
-  },
-  text: {
-    color: '#999999',
-    fontSize: '12px',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  idText: {
-    color: '#999999',
-    fontSize: '12px',
-    marginLeft: '6px',
-  },
   avatarArea: {
     borderTRadius: '4px',
     marginRight: '12px',
@@ -26,12 +8,30 @@ const styles = createStyles({
   detailsArea: {
     height: '100%',
   },
+  idArea: {
+    alignItems: 'center',
+    display: 'flex',
+  },
+  idText: {
+    color: '#999999',
+    fontSize: '12px',
+    marginLeft: '6px',
+  },
+  loginText: {
+    color: '#262626',
+    fontSize: '18px',
+  },
   loginTextArea: {
     marginBottom: '6px',
   },
-  idArea: {
-    display: 'flex',
+  text: {
     alignItems: 'center',
+    color: '#999999',
+    display: 'flex',
+    fontSize: '12px',
+  },
+  userCard: {
+    minHeight: '76px',
   },
 });
 

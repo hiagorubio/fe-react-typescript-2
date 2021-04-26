@@ -1,10 +1,11 @@
 import { CircularProgress, Grid, withStyles } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
+import { State } from 'src/redux/types';
 
-import { fetchUsers } from '../../../redux/modules/users';
+import * as userActions from '../../../redux/modules/users';
 import { UserCard } from '../../molecules';
 import { Page } from '../../templates';
 
@@ -16,12 +17,25 @@ export const HomePage = ({ classes, fetchUsers, users }: Props) => {
     fetchUsers();
   }, [fetchUsers]);
 
+  const fetchUsersCallback = useCallback(
+    () => {
+      fetchUsers();
+    },
+    [fetchUsers],
+  );
+
+  const handleClick = useCallback(
+    () => {
+       fetchUsers();
+    }, [fetchUsers],
+  );
+
   return (
     <Page>
       <InfiniteScroll
         dataLength={users.length}
         hasMore
-        next={() => fetchUsers()}
+        next={fetchUsersCallback}
         loader={
           <Grid
             container
@@ -37,7 +51,7 @@ export const HomePage = ({ classes, fetchUsers, users }: Props) => {
           {users.map(user => (
             <Grid item xs={12} sm={6} md={4} key={user.id}>
               <UserCard
-                onClick={() => {}}
+                onClick={handleClick}
                 login={user.login}
                 avatarUrl={user.avatar_url}
                 gitHubPage={user.html_url}
@@ -50,13 +64,12 @@ export const HomePage = ({ classes, fetchUsers, users }: Props) => {
     </Page>
   );
 };
-
 const mapStateToProps = (state: State) => ({
   users: state.usersStore.users,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators({ fetchUsers }, dispatch);
+  bindActionCreators({ fetchUsers: userActions.fetchUsers }, dispatch);
 
 export default connect(
   mapStateToProps,

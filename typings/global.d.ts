@@ -1,4 +1,4 @@
-import { compose, Store as ReduxStore } from "redux";
+import { Store as ReduxStore, compose } from 'redux';
 
 declare global {
   interface Store {}

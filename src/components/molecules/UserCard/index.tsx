@@ -1,6 +1,4 @@
 import {
-  Button,
-  Divider,
   Grid,
   Link,
   Typography,
@@ -8,7 +6,7 @@ import {
   withStyles,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import React, { ReactNode, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { GitHubMarkIcon } from '../../../assets/Icons';
 import { Badge, Card } from '../../atoms';
@@ -34,6 +32,13 @@ export const UserCard = ({
   id,
 }: Card) => {
   const [isImgLoaded, setIsImgLoaded] = useState(false);
+  const handleImgLoaded = useCallback(
+    () => {
+      setIsImgLoaded(true);
+    },
+    [setIsImgLoaded],
+  );
+
   return (
     <Card buttonText="Details" onClick={onClick}>
       <Grid container className={classes.userCard}>
@@ -45,7 +50,7 @@ export const UserCard = ({
             alt={`${login} GitHub avatar`}
             width="76px"
             height="76px"
-            onLoad={() => setIsImgLoaded(true)}
+            onLoad={handleImgLoaded}
             hidden={!isImgLoaded}
           />
         </Grid>

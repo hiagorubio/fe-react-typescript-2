@@ -7,39 +7,40 @@ import { Action } from 'typesafe-actions';
 
 import { State } from '../../types';
 
-import { ACTION_TYPES, User, UserState } from './types';
+import { ActionTypes, User, UserState } from './types';
 
 const INITITAL_SATE: UserState = {
-  users: [],
-  loading: false,
   error: false,
+  loading: false,
   since: 0,
+  users: [],
 };
 
 export const fetchUsers = (since: number) => ({
-  type: ACTION_TYPES.FETCH_USER,
   payload: since,
+  type: ActionTypes.FETCH_USER,
 });
 
 export const fetchUsersSuccess = (payload: User[]) => ({
-  type: ACTION_TYPES.SUCCESS,
   payload,
+  type: ActionTypes.SUCCESS,
 });
 
-export const fetchUsersError = () => ({ type: ACTION_TYPES.ERROR });
+export const fetchUsersError = () => ({ type: ActionTypes.ERROR });
 
 const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
   switch (action.type) {
-    case ACTION_TYPES.SUCCESS:
+    case ActionTypes.SUCCESS:
       const newUsers = [...state.users];
       newUsers.push(...action.payload);
+
       return {
         ...state,
-        users: newUsers,
         loading: true,
         since: state.since + 30,
+        users: newUsers,
       };
-    case ACTION_TYPES.ERROR:
+    case ActionTypes.ERROR:
       return {
         ...state,
         error: true,
@@ -58,7 +59,7 @@ export const fetchUserEpic = (
   state$: StateObservable<State>,
 ): Observable<Action> =>
   action$.pipe(
-    ofType(ACTION_TYPES.FETCH_USER),
+    ofType(ActionTypes.FETCH_USER),
     mergeMap(() =>
       from(
         axios.get(

@@ -3,14 +3,14 @@ import { createStyles } from '@material-ui/core/styles';
 const styles = createStyles({
   headerContainer: {
     backgroundColor: '#FFFFFF',
-    textAlign: 'center',
     heigth: '40px',
     padding: '0 30px',
+    textAlign: 'center',
   },
   title: {
-    textAlign: 'center',
-    display: 'flex',
     alignItems: 'center',
+    display: 'flex',
+    textAlign: 'center',
   },
 });
 

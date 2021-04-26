@@ -4,11 +4,11 @@ import React from 'react';
 const theme = createMuiTheme({
   breakpoints: {
     values: {
-      xs: 0,
-      sm: 420,
-      md: 800,
       lg: 1280,
+      md: 800,
+      sm: 420,
       xl: 1920,
+      xs: 0,
     },
   },
   palette: {
@@ -24,7 +24,8 @@ const theme = createMuiTheme({
 interface OwnProps {
   children: React.ReactNode;
 }
-
-export default function Theme({ children }: OwnProps) {
+const Theme = ({ children }: OwnProps) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-}
+};
+
+export default Theme;

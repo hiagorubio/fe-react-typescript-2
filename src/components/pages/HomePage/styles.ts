@@ -1,12 +1,15 @@
 import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles({
-  users: {
-    padding: '30px',
-    maxWidth: '1130px',
-    margin: 'auto',
+  loader: {
+    height: '100%',
+    width: '100%',
   },
-  loader: { width: '100%', height: '100%' },
+  users: {
+    margin: 'auto',
+    maxWidth: '1130px',
+    padding: '30px',
+  },
 });
 
 export default styles;

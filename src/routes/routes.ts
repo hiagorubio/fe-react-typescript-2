@@ -1,5 +1,5 @@
-enum routes {
+enum Routes {
   ROOT = '/',
 }
 
-export default routes;
+export default Routes;

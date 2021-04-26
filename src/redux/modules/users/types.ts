@@ -25,7 +25,7 @@ export interface UserState {
   readonly since: number;
 }
 
-export enum ACTION_TYPES {
+export enum ActionTypes {
   FETCH_USER = 'users/fetch-users',
   SUCCESS = 'users/fetch-users-sucess',
   ERROR = 'users/fetch-users-error',
