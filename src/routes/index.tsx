@@ -8,9 +8,7 @@ import routes from './routes';
 const Routes: React.FC = () => (
   <BrowserRouter>
     <Switch>
-      <Route path={routes.ROOT}>
-        <HomePage />
-      </Route>
+      <Route path={routes.ROOT} component={HomePage} />
     </Switch>
   </BrowserRouter>
 );

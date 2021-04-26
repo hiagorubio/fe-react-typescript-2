@@ -9,7 +9,7 @@ import { State } from '../../../redux/types';
 import styles from './styles';
 
 const mapStateToProps = (state: State) => ({
-  users: state.usersStore.users,
+  users: state?.usersStore?.users,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
