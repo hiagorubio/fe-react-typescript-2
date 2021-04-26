@@ -6,7 +6,7 @@ import { UserCard } from '../../molecules';
 import { Page } from '../../templates';
 
 import styles from './styles';
-import { Props } from './types';
+import { Props, connector } from './types';
 
 export const HomePage = ({ classes, fetchUsers, users }: Props) => {
   useEffect(() => {
@@ -61,4 +61,4 @@ export const HomePage = ({ classes, fetchUsers, users }: Props) => {
   );
 };
 
-export default (withStyles(styles)(HomePage));
+export default withStyles(styles)(connector(HomePage));

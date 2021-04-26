@@ -16,10 +16,7 @@ const INITITAL_SATE: UserState = {
   users: [],
 };
 
-export const fetchUsers = (since: number) => ({
-  payload: since,
-  type: ActionTypes.FETCH_USER,
-});
+export const fetchUsers = () => ({ type: ActionTypes.FETCH_USER });
 
 export const fetchUsersSuccess = (payload: User[]) => ({
   payload,
