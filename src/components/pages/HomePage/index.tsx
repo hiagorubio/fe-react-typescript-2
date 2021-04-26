@@ -1,11 +1,7 @@
 import { CircularProgress, Grid, withStyles } from '@material-ui/core';
 import React, { useCallback, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { connect } from 'react-redux';
-import { Dispatch, bindActionCreators } from 'redux';
-import { State } from 'src/redux/types';
 
-import * as userActions from '../../../redux/modules/users';
 import { UserCard } from '../../molecules';
 import { Page } from '../../templates';
 
@@ -64,14 +60,5 @@ export const HomePage = ({ classes, fetchUsers, users }: Props) => {
     </Page>
   );
 };
-const mapStateToProps = (state: State) => ({
-  users: state.usersStore.users,
-});
 
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators({ fetchUsers: userActions.fetchUsers }, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withStyles(styles)(HomePage));
+export default (withStyles(styles)(HomePage));

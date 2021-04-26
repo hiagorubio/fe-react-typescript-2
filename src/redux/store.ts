@@ -6,11 +6,13 @@ import {
   createStore,
 } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
+import { Action } from 'typesafe-actions';
 
 import { rootEpic, rootReducer } from './modules';
+import { State } from './types';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const epicMiddleware = createEpicMiddleware();
+const epicMiddleware = createEpicMiddleware<Action<string>, Action<string>, State>();
 const enhancer = composeEnhancers(applyMiddleware(epicMiddleware));
 
 const store: ReduxStore<Store> = createStore(rootReducer, enhancer);
