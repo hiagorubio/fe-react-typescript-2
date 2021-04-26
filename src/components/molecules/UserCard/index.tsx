@@ -1,4 +1,3 @@
-import React, { ReactNode, useState } from "react";
 import {
   Button,
   Divider,
@@ -7,11 +6,14 @@ import {
   Typography,
   WithStyles,
   withStyles,
-} from "@material-ui/core";
-import styles from "./styles";
-import { Badge, Card } from "../../atoms";
-import { GitHubMarkIcon } from "../../../assets/Icons";
-import { Skeleton } from "@material-ui/lab";
+} from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
+import React, { ReactNode, useState } from 'react';
+
+import { GitHubMarkIcon } from '../../../assets/Icons';
+import { Badge, Card } from '../../atoms';
+
+import styles from './styles';
 
 interface OwnProps {
   onClick: () => void;

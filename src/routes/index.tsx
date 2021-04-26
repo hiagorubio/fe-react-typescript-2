@@ -1,7 +1,9 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { HomePage } from "../components/pages";
-import routes from "./routes";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import { HomePage } from '../components/pages';
+
+import routes from './routes';
 
 const Routes: React.FC = () => (
   <BrowserRouter>

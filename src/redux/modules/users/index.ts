@@ -1,11 +1,13 @@
-import { Action } from "typesafe-actions";
-import { from, Observable } from "rxjs";
-import { catchError, map, mergeMap } from "rxjs/operators";
-import { ofType, StateObservable } from "redux-observable";
-import { Reducer } from "redux";
-import { UserState, User, ACTION_TYPES } from "./types";
-import { State } from "../../types";
-import axios from "axios";
+import axios from 'axios';
+import { Reducer } from 'redux';
+import { StateObservable, ofType } from 'redux-observable';
+import { Observable, from } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import { Action } from 'typesafe-actions';
+
+import { State } from '../../types';
+
+import { ACTION_TYPES, User, UserState } from './types';
 
 const INITITAL_SATE: UserState = {
   users: [],
@@ -53,7 +55,7 @@ export default reducer;
 
 export const fetchUserEpic = (
   action$: Observable<Action>,
-  state$: StateObservable<State>
+  state$: StateObservable<State>,
 ): Observable<Action> =>
   action$.pipe(
     ofType(ACTION_TYPES.FETCH_USER),
@@ -63,13 +65,13 @@ export const fetchUserEpic = (
           `https://api.github.com/users?per_page=30&since=${state$.value.usersStore.since}`,
           {
             headers: {
-              Authorization: "Bearer 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",
+              Authorization: 'Bearer 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',
             },
-          }
-        )
+          },
+        ),
       ).pipe(
-        map((response) => fetchUsersSuccess(response.data)),
-        catchError(() => fetchUsersError)
-      )
-    )
+        map(response => fetchUsersSuccess(response.data)),
+        catchError(() => fetchUsersError),
+      ),
+    ),
   );

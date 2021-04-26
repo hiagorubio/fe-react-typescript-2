@@ -1,7 +1,9 @@
-import React from "react";
-import { Grid, Typography, WithStyles, withStyles } from "@material-ui/core";
-import styles from "./styles";
-import { GitHubMarkIcon } from "../../../assets/Icons";
+import { Grid, Typography, WithStyles, withStyles } from '@material-ui/core';
+import React from 'react';
+
+import { GitHubMarkIcon } from '../../../assets/Icons';
+
+import styles from './styles';
 
 const Header = ({ classes }: WithStyles<typeof styles>) => (
   <Grid

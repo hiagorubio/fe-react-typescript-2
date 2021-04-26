@@ -1,6 +1,7 @@
-import React from "react";
-import { Grid, Typography, WithStyles, withStyles } from "@material-ui/core";
-import styles from "./styles";
+import { Grid, Typography, WithStyles, withStyles } from '@material-ui/core';
+import React from 'react';
+
+import styles from './styles';
 
 interface OwnProps {
   backgroundColor: string;
@@ -13,7 +14,7 @@ type Badge = OwnProps & WithStyles<typeof styles>;
 export const Badge = ({ classes, backgroundColor, color, text }: Badge) => (
   <Grid
     className={classes.badge}
-    style={{ backgroundColor: backgroundColor, color: color }}
+    style={{ backgroundColor, color }}
   >
     <Typography className={classes.text}>{text}</Typography>
   </Grid>

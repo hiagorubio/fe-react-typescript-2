@@ -1,4 +1,4 @@
-import { UserState } from "./modules/users/types";
+import { UserState } from './modules/users';
 
 export interface State {
   usersStore: UserState;

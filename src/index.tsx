@@ -1,10 +1,10 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import store from "./redux/store";
-import Routes from "./routes";
-import Theme from "./config/Theme";
+import Theme from './config/Theme';
+import store from './redux/store';
+import Routes from './routes';
 
 const App = () => (
   <Provider store={store}>
@@ -14,7 +14,7 @@ const App = () => (
   </Provider>
 );
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 if (module.hot !== undefined) {
   module.hot.accept();

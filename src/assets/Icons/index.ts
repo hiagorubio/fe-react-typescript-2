@@ -1,1 +1,1 @@
-export { default as GitHubMarkIcon } from "./GitHubMarkIcon";
+export { default as GitHubMarkIcon } from './GitHubMarkIcon';

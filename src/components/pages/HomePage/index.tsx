@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { CircularProgress, Grid, withStyles } from "@material-ui/core";
-import { bindActionCreators, Dispatch } from "redux";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Page } from "../../templates";
-import { UserCard } from "../../molecules";
-import { fetchUsers } from "../../../redux/modules/users";
-import styles from "./styles";
-import { Props } from "./types";
+import { CircularProgress, Grid, withStyles } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { connect } from 'react-redux';
+import { Dispatch, bindActionCreators } from 'redux';
+
+import { fetchUsers } from '../../../redux/modules/users';
+import { UserCard } from '../../molecules';
+import { Page } from '../../templates';
+
+import styles from './styles';
+import { Props } from './types';
 
 export const HomePage = ({ classes, fetchUsers, users }: Props) => {
   useEffect(() => {
@@ -32,7 +34,7 @@ export const HomePage = ({ classes, fetchUsers, users }: Props) => {
         }
       >
         <Grid container className={classes.users} spacing={2}>
-          {users.map((user) => (
+          {users.map(user => (
             <Grid item xs={12} sm={6} md={4} key={user.id}>
               <UserCard
                 onClick={() => {}}
@@ -58,5 +60,5 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withStyles(styles)(HomePage));

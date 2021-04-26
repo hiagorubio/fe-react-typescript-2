@@ -1,6 +1,7 @@
-import { WithStyles } from "@material-ui/core";
-import { ReactNode } from "react";
-import styles from "./styles";
+import { WithStyles } from '@material-ui/core';
+import { ReactNode } from 'react';
+
+import styles from './styles';
 
 export interface OwnProps {
   children: ReactNode;

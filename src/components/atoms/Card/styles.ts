@@ -1,29 +1,29 @@
-import { createStyles } from "@material-ui/core/styles";
+import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles({
   card: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: "4px",
+    backgroundColor: '#FFFFFF',
+    borderRadius: '4px',
   },
   divider: {
-    backgroundColor: "#FAFAFA",
-    width: "100%",
-    height: "2px",
+    backgroundColor: '#FAFAFA',
+    height: '2px',
+    width: '100%',
   },
   cardChildren: {
-    padding: "20px",
+    padding: '20px',
   },
   buttonArea: {
-    padding: "6px 0",
+    padding: '6px 0',
   },
   button: {
-    width: "100%",
+    width: '100%',
   },
   buttonText: {
-    textAlign: "center",
-    fontSize: "12px",
-    textTransform: "capitalize",
-    color: "#6BA5FF",
+    color: '#6BA5FF',
+    fontSize: '12px',
+    textAlign: 'center',
+    textTransform: 'capitalize',
   },
 });
 

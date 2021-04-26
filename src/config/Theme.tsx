@@ -1,5 +1,5 @@
-import React from "react";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import React from 'react';
 
 const theme = createMuiTheme({
   breakpoints: {
@@ -13,10 +13,10 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: "#262626",
+      main: '#262626',
     },
     secondary: {
-      main: "#999999",
+      main: '#999999',
     },
   },
 });

@@ -1,4 +1,3 @@
-import React, { ReactNode } from "react";
 import {
   Button,
   Divider,
@@ -6,8 +5,10 @@ import {
   Typography,
   WithStyles,
   withStyles,
-} from "@material-ui/core";
-import styles from "./styles";
+} from '@material-ui/core';
+import React, { ReactNode } from 'react';
+
+import styles from './styles';
 
 interface OwnProps {
   buttonText: string;

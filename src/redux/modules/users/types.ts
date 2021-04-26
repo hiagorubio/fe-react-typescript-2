@@ -26,7 +26,7 @@ export interface UserState {
 }
 
 export enum ACTION_TYPES {
-  FETCH_USER = "users/fetch-users",
-  SUCCESS = "users/fetch-users-sucess",
-  ERROR = "users/fetch-users-error",
+  FETCH_USER = 'users/fetch-users',
+  SUCCESS = 'users/fetch-users-sucess',
+  ERROR = 'users/fetch-users-error',
 }
