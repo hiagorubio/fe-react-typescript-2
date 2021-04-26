@@ -6,7 +6,7 @@ import { Props } from './types';
 
 const Repositories = ({ classes, repositoriesCount = 14 }: Props) => {
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" className={classes.container}>
       <Typography className={classes.title}>Repositories</Typography>
       <Typography className={classes.count}>Repositories count: <span className={classes.countValue}>{repositoriesCount}</span></Typography>
       <Typography className={classes.count}>Repositories list:</Typography>

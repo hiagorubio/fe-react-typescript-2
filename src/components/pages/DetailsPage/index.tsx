@@ -6,9 +6,9 @@ import { Profile, Repositories } from '../../organisms';
 import { Page } from '../../templates';
 
 import styles from './styles';
-import { Props } from './types';
+import { Props, connector } from './types';
 
-export const DetailsPage = ({ classes, history }: Props) => {
+export const DetailsPage = ({ classes, history, user }: Props) => {
   const handleBack = useCallback(
     () => {
       history.goBack();
@@ -23,12 +23,12 @@ export const DetailsPage = ({ classes, history }: Props) => {
       >
         <Grid container >
           <Grid item xs={6} className={classes.container}>
-            <Profile />
-            <Repositories />
+            <Profile user={user}/>
+            <Repositories repositoriesCount={14}/>
           </Grid>
         </Grid>
       </ Page >
   );
 };
 
-export default withStyles(styles)(withRouter(DetailsPage));
+export default withStyles(styles)(withRouter(connector(DetailsPage)));

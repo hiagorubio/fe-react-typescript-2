@@ -9,7 +9,7 @@ import { Page } from '../../templates';
 import styles from './styles';
 import { Props, connector } from './types';
 
-export const HomePage = ({ history, classes, fetchUsers, users }: Props) => {
+export const HomePage = ({ history, classes, fetchUsers, users, setUser }: Props) => {
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
@@ -22,8 +22,9 @@ export const HomePage = ({ history, classes, fetchUsers, users }: Props) => {
   );
 
   const handleClick = useCallback(
-    () => {
-       history.push(RoutesEnum.DETAILS_PAGE);
+    user => {
+      setUser(user);
+      history.push(RoutesEnum.DETAILS_PAGE);
     }, [history.push],
   );
 
@@ -48,7 +49,7 @@ export const HomePage = ({ history, classes, fetchUsers, users }: Props) => {
           {users.map(user => (
             <Grid item xs={12} sm={6} md={4} key={user.id}>
               <UserCard
-                onClick={handleClick}
+                onClick={() => handleClick(user)}
                 login={user.login}
                 avatarUrl={user.avatar_url}
                 gitHubPage={user.html_url}

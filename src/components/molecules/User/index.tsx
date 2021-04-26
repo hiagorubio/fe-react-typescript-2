@@ -18,6 +18,7 @@ interface OwnProps {
   avatarUrl: string;
   gitHubPage: string;
   id: number;
+  imageSize: string;
 }
 
 type Props = OwnProps & WithStyles<typeof styles>;
@@ -28,6 +29,7 @@ export const UserCard = ({
   avatarUrl,
   gitHubPage,
   id,
+  imageSize,
 }: Props) => {
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const handleImgLoaded = useCallback(
@@ -40,13 +42,13 @@ export const UserCard = ({
   return (
       <Grid container className={classes.userCard}>
         <Grid item className={classes.avatarArea}>
-          {!isImgLoaded && <Skeleton variant="rect" width={76} height={76} />}
+          {!isImgLoaded && <Skeleton variant="rect" width={imageSize} height={imageSize} />}
 
           <img
             src={avatarUrl}
             alt={`${login} GitHub avatar`}
-            width="76px"
-            height="76px"
+            width={imageSize}
+            height={imageSize}
             onLoad={handleImgLoaded}
             hidden={!isImgLoaded}
           />

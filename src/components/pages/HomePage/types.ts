@@ -14,7 +14,10 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators({ fetchUsers: userActions.fetchUsers }, dispatch);
+  bindActionCreators({
+    fetchUsers: userActions.fetchUsers,
+    setUser: userActions.setUser,
+   }, dispatch);
 
 export const connector = connect(
   mapStateToProps,
@@ -24,6 +27,7 @@ export const connector = connect(
 export interface DispatchProps {
   users: User[];
   fetchUsers(): void;
+  setUser(user: User): void;
 }
 
 export type Props = State & DispatchProps & WithStyles<typeof styles> & ConnectedProps<typeof connector>

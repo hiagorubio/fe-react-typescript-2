@@ -68,7 +68,7 @@
     "interface-over-type-literal": true,
     "jsdoc-format": true,
     "jsx-boolean-value": false,
-    "jsx-no-lambda": true,
+    "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
     "literal-spacing": [
       true,

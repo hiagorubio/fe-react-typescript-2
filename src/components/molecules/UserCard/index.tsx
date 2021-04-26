@@ -1,6 +1,3 @@
-import {
-  withStyles,
-} from '@material-ui/core';
 import React from 'react';
 
 import { User } from '..';
@@ -21,6 +18,7 @@ export const UserCard = ({ onClick, login, avatarUrl, gitHubPage, id }: OwnProps
         avatarUrl={avatarUrl}
         gitHubPage={gitHubPage}
         id={id}
+        imageSize={'76'}
       />
     </Card>
   );

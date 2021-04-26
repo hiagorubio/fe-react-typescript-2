@@ -23,10 +23,12 @@ export interface UserState {
   readonly loading: boolean;
   readonly error: boolean;
   readonly since: number;
+  selectUser: User | {};
 }
 
 export enum ActionTypes {
   FETCH_USER = 'users/fetch-users',
   SUCCESS = 'users/fetch-users-sucess',
   ERROR = 'users/fetch-users-error',
+  SET_USER = 'users/set-selected-user',
 }
