@@ -1,13 +1,14 @@
-import { withStyles } from '@material-ui/core';
+import { Grid, withStyles } from '@material-ui/core';
 import React, { useCallback } from 'react';
 import { withRouter } from 'react-router';
 
+import { Profile, Repositories } from '../../organisms';
 import { Page } from '../../templates';
 
 import styles from './styles';
 import { Props } from './types';
 
-export const DetailsPage = ({ history }: Props) => {
+export const DetailsPage = ({ classes, history }: Props) => {
   const handleBack = useCallback(
     () => {
       history.goBack();
@@ -20,7 +21,12 @@ export const DetailsPage = ({ history }: Props) => {
         useBackButton
         onClickBack={handleBack}
       >
-        DetailsPage
+        <Grid container >
+          <Grid item xs={6} className={classes.container}>
+            <Profile />
+            <Repositories />
+          </Grid>
+        </Grid>
       </ Page >
   );
 };
