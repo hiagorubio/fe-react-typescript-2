@@ -1,14 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { HomePage } from '../components/pages';
+import { DetailsPage, HomePage } from '../components/pages';
 
-import routes from './routes';
+export enum RoutesEnum {
+  ROOT = '/',
+  DETAILS_PAGE = '/details',
+}
 
 const Routes: React.FC = () => (
   <BrowserRouter>
     <Switch>
-      <Route path={routes.ROOT} component={HomePage} />
+      <Route exact path={RoutesEnum.DETAILS_PAGE} component={DetailsPage} />
+      <Route exact path={RoutesEnum.ROOT} component={HomePage} />
     </Switch>
   </BrowserRouter>
 );

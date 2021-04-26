@@ -1,5 +1,6 @@
 import { WithStyles } from '@material-ui/core';
 import { ConnectedProps, connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 import { Dispatch, bindActionCreators } from 'redux';
 
 import * as userActions from '../../../redux/modules/users/reducer';
@@ -25,4 +26,5 @@ export interface DispatchProps {
   fetchUsers(): void;
 }
 
-export type Props = State & DispatchProps & WithStyles<typeof styles> & ConnectedProps<typeof connector>;
+export type Props = State & DispatchProps & WithStyles<typeof styles> & ConnectedProps<typeof connector>
+  & RouteComponentProps;

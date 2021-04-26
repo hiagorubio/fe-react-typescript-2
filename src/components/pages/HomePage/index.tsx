@@ -2,13 +2,14 @@ import { CircularProgress, Grid, withStyles } from '@material-ui/core';
 import React, { useCallback, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+import { RoutesEnum } from '../../../routes';
 import { UserCard } from '../../molecules';
 import { Page } from '../../templates';
 
 import styles from './styles';
 import { Props, connector } from './types';
 
-export const HomePage = ({ classes, fetchUsers, users }: Props) => {
+export const HomePage = ({ history, classes, fetchUsers, users }: Props) => {
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
@@ -22,8 +23,8 @@ export const HomePage = ({ classes, fetchUsers, users }: Props) => {
 
   const handleClick = useCallback(
     () => {
-       fetchUsers();
-    }, [fetchUsers],
+       history.push(RoutesEnum.DETAILS_PAGE);
+    }, [history.push],
   );
 
   return (

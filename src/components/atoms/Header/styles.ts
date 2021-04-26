@@ -1,6 +1,10 @@
 import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles({
+  backButton: {
+    color: '#1A74FF',
+    textTransform: 'capitalize',
+  },
   headerContainer: {
     backgroundColor: '#FFFFFF',
     heigth: '40px',

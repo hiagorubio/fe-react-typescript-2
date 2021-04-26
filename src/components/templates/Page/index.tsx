@@ -4,11 +4,11 @@ import React from 'react';
 import { Header } from '../../atoms';
 
 import styles from './styles';
-import { Page } from './types';
+import { Props } from './types';
 
-const Page = ({ children, classes }: Page) => (
+const Page = ({ children, classes, useBackButton, onClickBack }: Props) => (
   <div className={classes.page}>
-    <Header />
+    <Header useBackButton={useBackButton} onClickBack={onClickBack} />
     {children}
   </div>
 );
