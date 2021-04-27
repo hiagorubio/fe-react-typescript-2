@@ -20,7 +20,7 @@ const INITITAL_SATE: UserState = {
     gists_url: '',
     gravatar_id: '',
     html_url: '',
-    id: undefined,
+    id: 0,
     login: '',
     node_id: '',
     organizations_url: '',

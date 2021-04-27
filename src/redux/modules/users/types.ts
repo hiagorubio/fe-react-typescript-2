@@ -1,6 +1,6 @@
 export interface User {
   readonly login: string;
-  readonly id?: number;
+  readonly id: number | 0;
   readonly node_id: string;
   readonly avatar_url: string;
   readonly gravatar_id: string;
