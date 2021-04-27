@@ -1,10 +1,11 @@
 import { WithStyles } from '@material-ui/core';
-import { User } from 'src/redux/modules/users/types';
+
+import { User } from '../../../redux/modules/users/types';
 
 import styles from './styles';
 
 interface OwnProps {
-  user: User | {};
+  user: User;
 }
 
 export type Props = WithStyles<typeof styles> & OwnProps;

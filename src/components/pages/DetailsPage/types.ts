@@ -8,7 +8,7 @@ import { State } from '../../../redux/types';
 import styles from './styles';
 
 const mapStateToProps = (state: State) => ({
-  user: state?.usersStore?.selectUser,
+  user: state.usersStore.selectUser,
 });
 
 export const connector = connect(mapStateToProps);

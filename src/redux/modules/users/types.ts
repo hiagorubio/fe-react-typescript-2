@@ -1,6 +1,6 @@
 export interface User {
   readonly login: string;
-  readonly id: number;
+  readonly id?: number;
   readonly node_id: string;
   readonly avatar_url: string;
   readonly gravatar_id: string;
@@ -23,7 +23,7 @@ export interface UserState {
   readonly loading: boolean;
   readonly error: boolean;
   readonly since: number;
-  selectUser: User | {};
+  readonly selectUser: User;
 }
 
 export enum ActionTypes {

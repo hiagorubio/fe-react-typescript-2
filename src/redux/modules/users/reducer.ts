@@ -12,7 +12,26 @@ import { ActionTypes, User, UserState } from './types';
 const INITITAL_SATE: UserState = {
   error: false,
   loading: false,
-  selectUser: {},
+  selectUser: {
+    avatar_url: '',
+    events_url: '',
+    followers_url: '',
+    following_url: '',
+    gists_url: '',
+    gravatar_id: '',
+    html_url: '',
+    id: undefined,
+    login: '',
+    node_id: '',
+    organizations_url: '',
+    received_events_url: '',
+    repos_url: '',
+    site_admin: false,
+    starred_url: '',
+    subscriptions_url: '',
+    type: '',
+    url: '',
+  },
   since: 0,
   users: [],
 };
@@ -26,7 +45,7 @@ export const fetchUsersSuccess = (payload: User[]) => ({
 
 export const fetchUsersError = () => ({ type: ActionTypes.ERROR });
 
-export const setUser = (payload: User) => ({ payload,  type: ActionTypes.SET_USER });
+export const setUser = (payload: User) => ({ payload, type: ActionTypes.SET_USER });
 
 const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
   switch (action.type) {
