@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, withStyles } from '@material-ui/core';
+import { CircularProgress, Grid } from '@material-ui/core';
 import React, { useCallback, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -6,20 +6,18 @@ import { RoutesEnum } from '../../../routes';
 import { UserCard } from '../../molecules';
 import { Page } from '../../templates';
 
-import styles from './styles';
+import useStyles from './styles';
 import { Props, connector } from './types';
 
-export const HomePage = ({ history, classes, fetchUsers, users, setUser }: Props) => {
+const HomePage = ({ history, fetchUsers, users, setUser , since }: Props) => {
+  const classes = useStyles();
   useEffect(() => {
-    fetchUsers();
-  }, [fetchUsers]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  const fetchUsersCallback = useCallback(
-    () => {
-      fetchUsers();
-    },
-    [fetchUsers],
-  );
+  useEffect(() => {
+    fetchUsers(since === 0 ? 0 : since + 30);
+  }, [fetchUsers]);
 
   const handleClick = useCallback(
     user => {
@@ -33,7 +31,7 @@ export const HomePage = ({ history, classes, fetchUsers, users, setUser }: Props
       <InfiniteScroll
         dataLength={users.length}
         hasMore
-        next={fetchUsersCallback}
+        next={() => { fetchUsers(since + 30); }}
         loader={
           <Grid
             container
@@ -63,4 +61,4 @@ export const HomePage = ({ history, classes, fetchUsers, users, setUser }: Props
   );
 };
 
-export default withStyles(styles)(connector(HomePage));
+export default connector(HomePage);

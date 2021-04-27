@@ -1,11 +1,11 @@
-import { createStyles } from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
-const styles = createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   page: {
-    background: '#F5F5F5',
+    background: theme.palette.background.default,
     minHeight: '100%',
     width: '100%',
   },
-});
+}));
 
-export default styles;
+export default useStyles;

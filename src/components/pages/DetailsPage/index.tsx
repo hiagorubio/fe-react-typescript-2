@@ -1,34 +1,39 @@
-import { Grid, withStyles } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React, { useCallback } from 'react';
 import { withRouter } from 'react-router';
 
-import { Profile, Repositories } from '../../organisms';
+import { RoutesEnum } from '../../../routes';
+import { History, Profile, Repositories } from '../../organisms';
 import { Page } from '../../templates';
 
-import styles from './styles';
+import useStyles from './styles';
 import { Props, connector } from './types';
 
-export const DetailsPage = ({ classes, history, user }: Props) => {
+export const DetailsPage = ({ history, user }: Props) => {
   const handleBack = useCallback(
     () => {
-      history.goBack();
+      history.push({ pathname: RoutesEnum.ROOT, state: { back: true } });
     },
-    [history.goBack],
+    [history.push],
   );
+  const classes = useStyles();
 
   return (
-      <Page
-        useBackButton
-        onClickBack={handleBack}
-      >
-        <Grid container >
-          <Grid item xs={6} className={classes.container}>
-            <Profile user={user}/>
-            <Repositories repositoriesCount={14}/>
-          </Grid>
+    <Page
+      useBackButton
+      onClickBack={handleBack}
+    >
+      <Grid container className={classes.container}>
+        <Grid item xs={6} className={classes.item}>
+          <Profile user={user} />
+          <Repositories repositoriesCount={14} />
         </Grid>
-      </ Page >
+        <Grid item xs={6} className={classes.item}>
+          <History />
+        </Grid>
+      </Grid>
+    </ Page >
   );
 };
 
-export default withStyles(styles)(withRouter(connector(DetailsPage)));
+export default withRouter(connector(DetailsPage));

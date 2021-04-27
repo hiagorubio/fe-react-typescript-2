@@ -23,6 +23,34 @@ interface OwnProps {
 
 type Props = OwnProps & WithStyles<typeof styles>;
 
+const badges = {
+  teamA: {
+    backgroundColor: '#B3D1FF',
+    color: '#0047B3',
+    text: 'Team A',
+  },
+  teamB: {
+    backgroundColor: '#FFD6C8',
+    color: '#c83300',
+    text: 'Team B',
+  },
+  teamC: {
+    backgroundColor: '#A6FCC8',
+    color: '#059E42',
+    text: 'Team C',
+  },
+};
+
+const handleBadges = (id: number) => {
+  const isMultipleOfSix = id % 6 === 0;
+  const isMultipleOfFour = id % 4 === 0;
+  if (isMultipleOfSix && isMultipleOfFour) { return badges.teamC; }
+  if (isMultipleOfFour) { return badges.teamA; }
+  if (isMultipleOfSix) { return badges.teamB; }
+
+  return false;
+};
+
 export const UserCard = ({
   classes,
   login,
@@ -38,6 +66,8 @@ export const UserCard = ({
     },
     [setIsImgLoaded],
   );
+
+  const badge = handleBadges(id);
 
   return (
       <Grid container className={classes.userCard}>
@@ -61,7 +91,9 @@ export const UserCard = ({
             </Grid>
 
             <Grid item className={classes.idArea}>
-              <Badge backgroundColor="#B3D1FF" color="#0047B3" text="Team A" />
+              {badge &&
+                <Badge backgroundColor={badge?.backgroundColor} color={badge?.color} text={badge?.text} />
+              }
               <Typography className={classes.idText}>ID: #{id}</Typography>
             </Grid>
 

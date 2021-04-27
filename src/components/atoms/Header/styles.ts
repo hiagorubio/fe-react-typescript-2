@@ -1,21 +1,28 @@
 import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles({
-  backButton: {
+  button: {
+    position: 'absolute',
+  },
+  buttonText: {
     color: '#1A74FF',
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 0,
+    textAlign: 'center',
     textTransform: 'capitalize',
   },
-  headerContainer: {
+  header: {
     backgroundColor: '#FFFFFF',
-    heigth: '40px',
-    padding: '0 30px',
-    textAlign: 'center',
   },
   title: {
     alignItems: 'center',
     display: 'flex',
+    justifyContent: 'center',
     textAlign: 'center',
+    width: '100%',
   },
+
 });
 
 export default styles;

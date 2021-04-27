@@ -1,11 +1,9 @@
 import axios from 'axios';
 import { Reducer } from 'redux';
-import { StateObservable, ofType } from 'redux-observable';
+import { ofType } from 'redux-observable';
 import { Observable, from } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { Action } from 'typesafe-actions';
-
-import { State } from '../../types';
 
 import { ActionTypes, User, UserState } from './types';
 
@@ -36,10 +34,12 @@ const INITITAL_SATE: UserState = {
   users: [],
 };
 
-export const fetchUsers = () => ({ type: ActionTypes.FETCH_USER });
+export const fetchUsers = (payload: number) => ({ payload, type: ActionTypes.FETCH_USER });
 
-export const fetchUsersSuccess = (payload: User[]) => ({
-  payload,
+interface FetchUsersSuccess { users: User[]; since: number; }
+
+export const fetchUsersSuccess = ({ users, since }: FetchUsersSuccess) => ({
+  payload: { users, since },
   type: ActionTypes.SUCCESS,
 });
 
@@ -51,12 +51,11 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
   switch (action.type) {
     case ActionTypes.SUCCESS:
       const newUsers = [...state.users];
-      newUsers.push(...action.payload);
-
+      newUsers.push(...action.payload.users);
       return {
         ...state,
         loading: true,
-        since: state.since + 30,
+        since: action.payload.since,
         users: newUsers,
       };
     case ActionTypes.ERROR:
@@ -78,16 +77,21 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
 
 export default reducer;
 
+interface FetchUsers {
+  payload: number;
+}
+
+type FetchUsersActions = FetchUsers & Action;
+
 export const fetchUserEpic = (
-  action$: Observable<Action>,
-  state$: StateObservable<State>,
+  action$: Observable<FetchUsersActions>,
 ): Observable<Action> =>
   action$.pipe(
     ofType(ActionTypes.FETCH_USER),
-    mergeMap(() =>
+    mergeMap(action =>
       from(
         axios.get(
-          `https://api.github.com/users?per_page=30&since=${state$?.value?.usersStore?.since}`,
+          `https://api.github.com/users?per_page=30&since=${action.payload}`,
           {
             headers: {
               Authorization: 'Bearer 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',
@@ -95,8 +99,8 @@ export const fetchUserEpic = (
           },
         ),
       ).pipe(
-        map(response => fetchUsersSuccess(response.data)),
-        catchError(() => fetchUsersError),
+        map(response => fetchUsersSuccess({ users: response.data, since: action.payload })),
+          catchError(() => fetchUsersError),
       ),
     ),
   );

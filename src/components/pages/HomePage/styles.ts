@@ -1,6 +1,6 @@
-import { createStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 
-const styles = createStyles({
+const useStyles = makeStyles(() => createStyles({
   loader: {
     height: '100%',
     width: '100%',
@@ -10,6 +10,7 @@ const styles = createStyles({
     maxWidth: '1130px',
     padding: '30px',
   },
-});
+}),
+);
 
-export default styles;
+export default useStyles;
