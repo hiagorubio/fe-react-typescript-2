@@ -15,7 +15,7 @@ const Header = ({ classes, onClickBack, useBackButton }: Props) => (
     alignItems="center"
   >
     <Grid item xs={1}>
-      {useBackButton &&  (<Button onClick={onClickBack}>
+      {useBackButton && (<Button onClick={onClickBack}>
           <Typography className={classes.backButton}>Back</Typography>
         </Button>)}
     </Grid>
