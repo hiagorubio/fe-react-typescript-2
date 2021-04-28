@@ -27,6 +27,7 @@
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
     "redux-observable": "1.2.0",
+    "redux-persist": "6.0.0",
     "rxjs": "6.6.7",
     "src": "1.1.2",
     "typesafe-actions": "5.1.0",

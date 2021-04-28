@@ -6,6 +6,7 @@ import {
   createStore,
 } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
+import { persistStore } from 'redux-persist';
 import { Action } from 'typesafe-actions';
 
 import { rootEpic, rootReducer } from './modules';
@@ -24,5 +25,7 @@ if (module.hot !== undefined) {
   });
 }
 epicMiddleware.run(rootEpic);
+
+export const persistor = persistStore(store);
 
 export default store;
