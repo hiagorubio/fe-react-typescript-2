@@ -23,7 +23,7 @@ export const DetailsPage = ({ history, user }: Props) => {
       useBackButton
       onClickBack={handleBack}
     >
-      <Grid container className={classes.container} spacing={1}>
+      <Grid container className={classes.container}>
         <Grid item xs={12} className={classes.item}>
           <Profile user={user} />
           <Repositories repositoriesCount={14} />
