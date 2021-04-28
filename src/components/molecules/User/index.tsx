@@ -5,11 +5,10 @@ import {
   WithStyles,
   withStyles,
 } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import { GitHubMarkIcon } from '../../../assets/Icons';
-import { Badge } from '../../atoms';
+import { Avatar, Badge } from '../../atoms';
 
 import styles from './styles';
 
@@ -59,28 +58,15 @@ export const UserCard = ({
   id,
   imageSize,
 }: Props) => {
-  const [isImgLoaded, setIsImgLoaded] = useState(false);
-  const handleImgLoaded = useCallback(
-    () => {
-      setIsImgLoaded(true);
-    },
-    [setIsImgLoaded],
-  );
-
   const badge = handleBadges(id);
 
   return (
       <Grid container className={classes.userCard}>
         <Grid item className={classes.avatarArea}>
-          {!isImgLoaded && <Skeleton variant="rect" width={imageSize} height={imageSize} />}
-
-          <img
+          <Avatar
             src={avatarUrl}
             alt={`${login} GitHub avatar`}
-            width={imageSize}
-            height={imageSize}
-            onLoad={handleImgLoaded}
-            hidden={!isImgLoaded}
+            size={imageSize}
           />
         </Grid>
 

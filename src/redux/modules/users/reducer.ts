@@ -52,6 +52,7 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
     case ActionTypes.SUCCESS:
       const newUsers = [...state.users];
       newUsers.push(...action.payload.users);
+
       return {
         ...state,
         loading: true,
@@ -59,12 +60,14 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
         users: newUsers,
       };
     case ActionTypes.ERROR:
+
       return {
         ...state,
         error: true,
         loading: false,
       };
     case ActionTypes.SET_USER:
+
       return {
         ...state,
         selectUser: action.payload,
@@ -78,20 +81,20 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
 export default reducer;
 
 interface FetchUsers {
-  payload: number;
+  payload?: number;
 }
 
-type FetchUsersActions = FetchUsers & Action;
+type FetchUsersActions = FetchUsers & Action<string>;
 
 export const fetchUserEpic = (
   action$: Observable<FetchUsersActions>,
-): Observable<Action> =>
+) =>
   action$.pipe(
     ofType(ActionTypes.FETCH_USER),
     mergeMap(action =>
       from(
         axios.get(
-          `https://api.github.com/users?per_page=30&since=${action.payload}`,
+          `https://api.github.com/users?per_page=30&since=${String(action?.payload)}`,
           {
             headers: {
               Authorization: 'Bearer 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',
@@ -99,7 +102,7 @@ export const fetchUserEpic = (
           },
         ),
       ).pipe(
-        map(response => fetchUsersSuccess({ users: response.data, since: action.payload })),
+        map(response => fetchUsersSuccess({ users: response.data, since: action?.payload || 0 })),
           catchError(() => fetchUsersError),
       ),
     ),

@@ -6,8 +6,6 @@ const useStyles = makeStyles(() => createStyles({
     width: '100%',
   },
   users: {
-    margin: 'auto',
-    maxWidth: '1130px',
     padding: '30px',
   },
 }),

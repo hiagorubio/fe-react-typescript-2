@@ -11,7 +11,9 @@ const Page = ({ children, useBackButton, onClickBack }: Props) => {
   return (
     <div className={classes.page}>
       <Header useBackButton={useBackButton} onClickBack={onClickBack} />
+      <div className={classes.content}>
       {children}
+      </div>
     </div>
   );
 };
