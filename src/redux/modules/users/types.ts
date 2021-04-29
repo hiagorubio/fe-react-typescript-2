@@ -19,7 +19,7 @@ export interface User {
   readonly site_admin: boolean;
 }
 export interface UserState {
-  readonly users: User[] | [];
+  readonly users: User[];
   readonly loading: boolean;
   readonly error: boolean;
   readonly since: number;

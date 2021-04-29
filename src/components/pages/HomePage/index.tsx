@@ -9,14 +9,16 @@ import { Page } from '../../templates';
 import useStyles from './styles';
 import { Props, connector } from './types';
 
-const HomePage = ({ history, fetchUsers, users, setUser , since }: Props) => {
+const HomePage = ({ history, fetchUsers, users , setUser , since }: Props) => {
   const classes = useStyles();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    fetchUsers(since === 0 ? 0 : since + 30);
+    if (since === 0 || since > users.length) {
+      fetchUsers();
+    }
   }, [fetchUsers]);
 
   const handleClick = useCallback(
@@ -31,7 +33,7 @@ const HomePage = ({ history, fetchUsers, users, setUser , since }: Props) => {
       <InfiniteScroll
         dataLength={users.length}
         hasMore
-        next={() => { fetchUsers(since + 30); }}
+        next={() => { fetchUsers(); }}
         loader={
           <Grid
             container

@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { Reducer } from 'redux';
-import { ofType } from 'redux-observable';
+import { StateObservable, ofType } from 'redux-observable';
 import { Observable, from } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { Action } from 'typesafe-actions';
+
+import { State } from '../../types';
 
 import { ActionTypes, User, UserState } from './types';
 
@@ -34,12 +36,12 @@ const INITITAL_SATE: UserState = {
   users: [],
 };
 
-export const fetchUsers = (payload: number) => ({ payload, type: ActionTypes.FETCH_USER });
+export const fetchUsers = () => ({ type: ActionTypes.FETCH_USER });
 
-interface FetchUsersSuccess { users: User[]; since: number; }
+interface FetchUsersSuccess { users: User[]; }
 
-export const fetchUsersSuccess = ({ users, since }: FetchUsersSuccess) => ({
-  payload: { users, since },
+export const fetchUsersSuccess = ({ users }: FetchUsersSuccess) => ({
+  payload: { users },
   type: ActionTypes.SUCCESS,
 });
 
@@ -56,7 +58,7 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
       return {
         ...state,
         loading: true,
-        since: action.payload.since,
+        since: state.since + 30,
         users: newUsers,
       };
     case ActionTypes.ERROR:
@@ -88,13 +90,14 @@ type FetchUsersActions = FetchUsers & Action<string>;
 
 export const fetchUserEpic = (
   action$: Observable<FetchUsersActions>,
+  state$: StateObservable<State>,
 ) =>
   action$.pipe(
     ofType(ActionTypes.FETCH_USER),
-    mergeMap(action =>
+    mergeMap(() =>
       from(
         axios.get(
-          `https://api.github.com/users?per_page=30&since=${String(action?.payload)}`,
+          `https://api.github.com/users?per_page=30&since=${state$.value.usersStore.since}`,
           {
             headers: {
               Authorization: 'Bearer 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',
@@ -102,7 +105,7 @@ export const fetchUserEpic = (
           },
         ),
       ).pipe(
-        map(response => fetchUsersSuccess({ users: response.data, since: action?.payload || 0 })),
+        map(response => fetchUsersSuccess({ users: response.data })),
           catchError(() => fetchUsersError),
       ),
     ),
