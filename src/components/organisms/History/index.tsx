@@ -10,7 +10,7 @@ const History = ({ classes, userEvents }: Props) => (
     <Grid container direction="column">
       <Typography className={classes.title}>History</Typography>
 
-      {userEvents.map(userEvent => (
+      {userEvents.length ? userEvents.map(userEvent => (
         <div className={classes.root} key={userEvent.id}>
           <div className={classes.stepperArea}>
             <span className={classes.stepperPreLine}/>
@@ -46,7 +46,9 @@ const History = ({ classes, userEvents }: Props) => (
           </div>
           </div>
         </div>
-      ))}
+      )) : (
+        <Typography>History is not available!</Typography>
+      )}
     </Grid>
   );
 

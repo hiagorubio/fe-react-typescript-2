@@ -20,14 +20,6 @@ export interface User {
   readonly type: string;
   readonly site_admin: boolean;
 }
-export interface UserState {
-  readonly users: User[];
-  readonly loading: boolean;
-  readonly error: boolean;
-  readonly since: number;
-  readonly selectUser: User;
-  readonly userEvents: UserEvent[];
-}
 
 export enum ActionTypes {
   FETCH_USERS = 'users/fetch',
@@ -39,15 +31,18 @@ export enum ActionTypes {
   FETCH_USER_EVENTS_SUCCESS= 'user-events/success',
   FETCH_USER_EVENTS_ERROR= 'user-events/error',
   SET_USER_EVENTS= 'user-events/set',
-}
 
-export interface FetchUserEvents {
+  FETCH_USER_REPOS= 'user-repos/fetch',
+  FETCH_USER_REPOS_SUCCESS= 'user-repos/success',
+  FETCH_USER_REPOS_ERROR= 'user-repos/error',
+  SET_USER_REPOS= 'user-repos/set',
+
+}
+export interface ActionUser {
   user?: string;
 }
 
-export type FetchUsersActions = Action<string>;
-
-export type FetchUserEventActions = FetchUserEvents & Action<string>;
+export type FetchUsersActions = ActionUser & Action<string>;
 
 export interface FetchUsersSuccess { users: User[]; }
 
@@ -60,4 +55,23 @@ export interface UserEvent {
   pullUrl: string;
   repoName: string;
   type: string;
+}
+export interface UserRepo {
+  id: string;
+  name: string;
+}
+
+export interface UserRepos {
+  repositories: UserRepo[];
+  count: number;
+}
+
+export interface UserState {
+  readonly users: User[];
+  readonly loading: boolean;
+  readonly error: boolean;
+  readonly since: number;
+  readonly selectUser: User;
+  readonly userEvents: UserEvent[];
+  readonly userRepos: UserRepos;
 }

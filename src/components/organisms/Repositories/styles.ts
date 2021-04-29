@@ -4,15 +4,17 @@ const styles = createStyles({
   container: {
     marginTop:  '20px',
   },
-  count: {
-    fontSize: '12px',
-  },
-  countValue: {
+  text: {
     fontSize: '12px',
     fontWeight: 600,
   },
   title: {
-      fontSize: '24px',
+    fontSize: '24px',
+    textTransform: 'none',
+  },
+  value: {
+    fontSize: '12px',
+    textTransform: 'none',
   },
 });
 

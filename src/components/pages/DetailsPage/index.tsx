@@ -9,7 +9,7 @@ import { Page } from '../../templates';
 import useStyles from './styles';
 import { Props, connector } from './types';
 
-export const DetailsPage = ({ history, user, fetchUserEvents }: Props) => {
+export const DetailsPage = ({ history, user, fetchUserEvents, fetchUserRepos }: Props) => {
     const handleBack = useCallback(
     () => {
       history.push({ pathname: RoutesEnum.ROOT, state: { back: true } });
@@ -22,6 +22,11 @@ export const DetailsPage = ({ history, user, fetchUserEvents }: Props) => {
       fetchUserEvents(user.login);
     }, [fetchUserEvents]);
 
+    useEffect(() => {
+      console.log('LOG >>> ~ file: index.tsx ~ line 27 ~ useEffect ~ user.login', user.login);
+      fetchUserRepos(user.login);
+    }, [fetchUserRepos]);
+
     return (
     <Page
       useBackButton
@@ -30,7 +35,7 @@ export const DetailsPage = ({ history, user, fetchUserEvents }: Props) => {
       <Grid container className={classes.container}>
         <Grid item xs={12} className={classes.item}>
           <Profile user={user} />
-          <Repositories repositoriesCount={14} />
+          <Repositories />
         </Grid>
         <Grid item xs={12} className={classes.item}>
           <History />

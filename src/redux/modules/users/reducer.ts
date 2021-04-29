@@ -27,6 +27,10 @@ const INITITAL_SATE: UserState = {
   },
   since: 0,
   userEvents: [],
+  userRepos: {
+    count: 0,
+    repositories: [],
+  },
   users: [],
 };
 
@@ -67,6 +71,20 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
       return {
         ...state,
         error: true,
+      };
+
+    case ActionTypes.FETCH_USER_REPOS_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        loading: false,
+        userRepos: action.payload,
+      };
+
+    case ActionTypes.SET_USER_REPOS:
+      return {
+        ...state,
+        userRepos: action.payload,
       };
 
     default:

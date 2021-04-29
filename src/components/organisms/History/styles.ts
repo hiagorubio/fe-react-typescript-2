@@ -45,7 +45,7 @@ const styles = createStyles({
     },
    stepperPostLine: {
       borderLeft: '2px solid #D2D2D2',
-      minHeight: '48px',
+      minHeight: '52px',
     },
    stepperPreLine: {
       borderLeft: '2px solid #D2D2D2',

@@ -12,6 +12,7 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators({
     fetchUserEvents: userActions.fetchUserEvents,
+    fetchUserRepos: userActions.fetchUserRepos,
   }, dispatch);
 
 export const connector = connect(mapStateToProps, mapDispatchToProps);

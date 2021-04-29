@@ -1,4 +1,4 @@
-import { ActionTypes, FetchUsersSuccess, User, UserEvent } from './types';
+import { ActionTypes, FetchUsersSuccess, User, UserEvent, UserRepos } from './types';
 
 /**
  * User Actions
@@ -28,3 +28,14 @@ export const fetchUsersEventsSuccess = (userEvents: UserEvent[]) => ({
 export const fetchUsersEventsError = () => ({ type: ActionTypes.FETCH_USER_EVENTS_ERROR });
 
 export const setUserEvents = (payload: User) => ({ payload, type: ActionTypes.SET_USER_EVENTS });
+
+/**
+ * User Repos Actions
+ */
+
+export const fetchUserRepos = (user: string) => ({ user, type: ActionTypes.FETCH_USER_REPOS });
+
+export const fetchUsersReposSuccess = (userEvents: UserRepos) => ({
+  payload:  userEvents,
+  type: ActionTypes.FETCH_USER_REPOS_SUCCESS,
+});
