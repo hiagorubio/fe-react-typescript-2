@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { withRouter } from 'react-router';
 
 import { RoutesEnum } from '../../../routes';
@@ -9,7 +9,7 @@ import { Page } from '../../templates';
 import useStyles from './styles';
 import { Props, connector } from './types';
 
-export const DetailsPage = ({ history, user }: Props) => {
+export const DetailsPage = ({ history, user, fetchUserEvents }: Props) => {
     const handleBack = useCallback(
     () => {
       history.push({ pathname: RoutesEnum.ROOT, state: { back: true } });
@@ -17,6 +17,10 @@ export const DetailsPage = ({ history, user }: Props) => {
     [history.push],
   );
     const classes = useStyles();
+
+    useEffect(() => {
+      fetchUserEvents(user.login);
+    }, [fetchUserEvents]);
 
     return (
     <Page

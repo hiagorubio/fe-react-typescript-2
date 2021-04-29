@@ -2,7 +2,7 @@ import { ConnectedProps, connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { Dispatch, bindActionCreators } from 'redux';
 
-import * as userActions from '../../../redux/modules/users/reducer';
+import * as userActions from '../../../redux/modules/users/actions';
 import { State } from '../../../redux/types';
 
 const mapStateToProps = (state: State) => ({

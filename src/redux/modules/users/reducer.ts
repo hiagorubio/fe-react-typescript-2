@@ -1,13 +1,6 @@
-import axios from 'axios';
 import { Reducer } from 'redux';
-import { StateObservable, ofType } from 'redux-observable';
-import { Observable, from } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
-import { Action } from 'typesafe-actions';
 
-import { State } from '../../types';
-
-import { ActionTypes, User, UserState } from './types';
+import { ActionTypes, UserState } from './types';
 
 const INITITAL_SATE: UserState = {
   error: false,
@@ -33,25 +26,13 @@ const INITITAL_SATE: UserState = {
     url: '',
   },
   since: 0,
+  userEvents: [],
   users: [],
 };
 
-export const fetchUsers = () => ({ type: ActionTypes.FETCH_USER });
-
-interface FetchUsersSuccess { users: User[]; }
-
-export const fetchUsersSuccess = ({ users }: FetchUsersSuccess) => ({
-  payload: { users },
-  type: ActionTypes.SUCCESS,
-});
-
-export const fetchUsersError = () => ({ type: ActionTypes.ERROR });
-
-export const setUser = (payload: User) => ({ payload, type: ActionTypes.SET_USER });
-
 const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
   switch (action.type) {
-    case ActionTypes.SUCCESS:
+    case ActionTypes.FETCH_USERS_SUCCESS:
       const newUsers = [...state.users];
       newUsers.push(...action.payload.users);
 
@@ -61,18 +42,31 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
         since: state.since + 30,
         users: newUsers,
       };
-    case ActionTypes.ERROR:
+    case ActionTypes.FETCH_USERS_ERROR:
 
       return {
         ...state,
         error: true,
         loading: false,
       };
-    case ActionTypes.SET_USER:
-
+    case ActionTypes.SET_USERS:
       return {
         ...state,
         selectUser: action.payload,
+      };
+
+    case ActionTypes.FETCH_USER_EVENTS_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        loading: false,
+        userEvents: action.payload,
+      };
+
+    case ActionTypes.FETCH_USER_EVENTS_ERROR:
+      return {
+        ...state,
+        error: true,
       };
 
     default:
@@ -81,32 +75,3 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
 };
 
 export default reducer;
-
-interface FetchUsers {
-  payload?: number;
-}
-
-type FetchUsersActions = FetchUsers & Action<string>;
-
-export const fetchUserEpic = (
-  action$: Observable<FetchUsersActions>,
-  state$: StateObservable<State>,
-) =>
-  action$.pipe(
-    ofType(ActionTypes.FETCH_USER),
-    mergeMap(() =>
-      from(
-        axios.get(
-          `https://api.github.com/users?per_page=30&since=${state$.value.usersStore.since}`,
-          {
-            headers: {
-              Authorization: 'Bearer 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',
-            },
-          },
-        ),
-      ).pipe(
-        map(response => fetchUsersSuccess({ users: response.data })),
-          catchError(() => fetchUsersError),
-      ),
-    ),
-  );

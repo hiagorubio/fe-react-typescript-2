@@ -1,3 +1,5 @@
+
+import { Action } from 'typesafe-actions';
 export interface User {
   readonly login: string;
   readonly id: number | 0;
@@ -24,11 +26,38 @@ export interface UserState {
   readonly error: boolean;
   readonly since: number;
   readonly selectUser: User;
+  readonly userEvents: UserEvent[];
 }
 
 export enum ActionTypes {
-  FETCH_USER = 'users/fetch-users',
-  SUCCESS = 'users/fetch-users-sucess',
-  ERROR = 'users/fetch-users-error',
-  SET_USER = 'users/set-selected-user',
+  FETCH_USERS = 'users/fetch',
+  FETCH_USERS_SUCCESS = 'users/sucess',
+  FETCH_USERS_ERROR = 'users/error',
+  SET_USERS = 'users/set',
+
+  FETCH_USER_EVENTS= 'user-events/fetch',
+  FETCH_USER_EVENTS_SUCCESS= 'user-events/success',
+  FETCH_USER_EVENTS_ERROR= 'user-events/error',
+  SET_USER_EVENTS= 'user-events/set',
+}
+
+export interface FetchUserEvents {
+  user?: string;
+}
+
+export type FetchUsersActions = Action<string>;
+
+export type FetchUserEventActions = FetchUserEvents & Action<string>;
+
+export interface FetchUsersSuccess { users: User[]; }
+
+export interface UserEvent {
+  action: string;
+  avatarUrl: string;
+  createdAt: string;
+  id: string;
+  login: string;
+  pullUrl: string;
+  repoName: string;
+  type: string;
 }
