@@ -1,6 +1,6 @@
-import { createStyles } from '@material-ui/core/styles';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
-const styles = createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   avatarArea: {
     borderTRadius: '4px',
     marginRight: '12px',
@@ -15,11 +15,16 @@ const styles = createStyles({
   idText: {
     color: '#999999',
     fontSize: '12px',
-    marginLeft: '6px',
   },
   loginText: {
     color: '#262626',
     fontSize: '18px',
+    maxWidth: '12vw',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '40vw',
+    },
   },
   loginTextArea: {
     marginBottom: '6px',
@@ -33,6 +38,7 @@ const styles = createStyles({
   userCard: {
     minHeight: '76px',
   },
-});
+}),
+);
 
-export default styles;
+export default useStyles;

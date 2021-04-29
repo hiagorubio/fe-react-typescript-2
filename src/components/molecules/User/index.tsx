@@ -2,25 +2,20 @@ import {
   Grid,
   Link,
   Typography,
-  WithStyles,
-  withStyles,
 } from '@material-ui/core';
 import React from 'react';
 
 import { GitHubMarkIcon } from '../../../assets/Icons';
 import { Avatar, Badge } from '../../atoms';
 
-import styles from './styles';
-
-interface OwnProps {
+import useStyles from './styles';
+interface Props {
   login: string;
   avatarUrl: string;
   gitHubPage: string;
   id: number;
   imageSize: string;
 }
-
-type Props = OwnProps & WithStyles<typeof styles>;
 
 const badges = {
   teamA: {
@@ -51,7 +46,6 @@ const handleBadges = (id: number) => {
 };
 
 export const UserCard = ({
-  classes,
   login,
   avatarUrl,
   gitHubPage,
@@ -59,6 +53,7 @@ export const UserCard = ({
   imageSize,
 }: Props) => {
   const badge = handleBadges(id);
+  const classes = useStyles();
 
   return (
       <Grid container className={classes.userCard}>
@@ -71,16 +66,20 @@ export const UserCard = ({
         </Grid>
 
         <Grid item>
-          <Grid container direction="column">
+          <Grid item container direction="column" style={{ height: '100%' }} justify="space-between">
             <Grid item className={classes.loginTextArea}>
               <Typography className={classes.loginText}>{login}</Typography>
-            </Grid>
-
-            <Grid item className={classes.idArea}>
-              {badge &&
-                <Badge backgroundColor={badge?.backgroundColor} color={badge?.color} text={badge?.text} />
-              }
-              <Typography className={classes.idText}>ID: #{id}</Typography>
+                <div className={classes.idArea}>
+                {badge &&
+                  <Badge
+                    margin="0 6px 0 0"
+                    backgroundColor={badge?.backgroundColor}
+                    color={badge?.color}
+                    text={badge?.text}
+                  />
+                }
+                <Typography className={classes.idText}>ID: #{id}</Typography>
+              </div>
             </Grid>
 
             <Grid item>
@@ -96,4 +95,4 @@ export const UserCard = ({
   );
 };
 
-export default withStyles(styles)(UserCard);
+export default UserCard;

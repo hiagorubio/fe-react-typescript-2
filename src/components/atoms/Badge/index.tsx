@@ -7,14 +7,15 @@ interface OwnProps {
   backgroundColor: string;
   color: string;
   text: string;
+  margin?: string;
 }
 
 type Badge = OwnProps & WithStyles<typeof styles>;
 
-export const Badge = ({ classes, backgroundColor, color, text }: Badge) => (
+export const Badge = ({ classes, backgroundColor, color, text, margin }: Badge) => (
   <Grid
     className={classes.badge}
-    style={{ backgroundColor, color }}
+    style={{ backgroundColor, color, margin }}
   >
     <Typography className={classes.text}>{text}</Typography>
   </Grid>
