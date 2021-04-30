@@ -12,8 +12,8 @@ const Profile = ({ classes, user }: Props) => {
     <Typography className={classes.title}>Profile</Typography>
       <User
         login={user.login}
-        avatarUrl={user.avatar_url}
-        gitHubPage={user.html_url}
+        avatarUrl={user.avatarUrl}
+        gitHubPage={user.gitHubPageUrl}
         id={user.id}
         imageSize={'120'}
       />

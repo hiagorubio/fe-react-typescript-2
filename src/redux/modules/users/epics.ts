@@ -12,7 +12,14 @@ import { fetchUserEventsLoading,
   fetchUsersReposSuccess,
   fetchUsersSuccess,
 } from './actions';
-import { ActionTypes, FetchUsersActions, UserEvent, UserRepos } from './types';
+import { ActionTypes, FetchUsersActions, User, UserEvent, UserRepos } from './types';
+
+const buildUsers = (data: any[]): User[] => data.map(item => ({
+     avatarUrl: item?.avatar_url,
+     gitHubPageUrl: item?.html_url,
+     id: item?.id,
+     login: item?.login,
+}));
 
 export const fetchUserEpic = (
   action$: Observable<FetchUsersActions>,
@@ -32,7 +39,7 @@ export const fetchUserEpic = (
             },
           ),
         ).pipe(
-          map(response => fetchUsersSuccess({ users: response.data })),
+          map(response => fetchUsersSuccess({ users: buildUsers(response.data) })),
           catchError(() => of({
             type: ActionTypes.FETCH_USERS_ERROR,
           })),

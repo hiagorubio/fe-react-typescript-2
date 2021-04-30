@@ -4,24 +4,10 @@ import { ActionTypes, UserState } from './types';
 
 const INITITAL_SATE: UserState = {
   selectUser: {
-    avatar_url: '',
-    events_url: '',
-    followers_url: '',
-    following_url: '',
-    gists_url: '',
-    gravatar_id: '',
-    html_url: '',
+    avatarUrl: '',
+    gitHubPageUrl: '',
     id: 0,
     login: '',
-    node_id: '',
-    organizations_url: '',
-    received_events_url: '',
-    repos_url: '',
-    site_admin: false,
-    starred_url: '',
-    subscriptions_url: '',
-    type: '',
-    url: '',
   },
   since: 0,
   userError: false,
@@ -66,7 +52,7 @@ const reducer: Reducer<UserState> = (state = INITITAL_SATE, action) => {
         userError: true,
         userLoading: false,
       };
-    case ActionTypes.SET_USERS:
+    case ActionTypes.SET_SELECTED_USER:
       return {
         ...state,
         selectUser: action.payload,

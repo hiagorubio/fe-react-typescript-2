@@ -6,7 +6,7 @@ import * as userActions from '../../../redux/modules/users/actions';
 import { State } from '../../../redux/types';
 
 const mapStateToProps = (state: State) => ({
-  user: state.usersStore.selectUser,
+  selectUser: state.usersStore.selectUser,
   userEventsLoading: state.usersStore.userEventsLoading,
   userReposLoading: state.usersStore.userReposLoading,
 });

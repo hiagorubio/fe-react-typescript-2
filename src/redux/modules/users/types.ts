@@ -1,24 +1,10 @@
 
 import { Action } from 'typesafe-actions';
 export interface User {
-  readonly login: string;
-  readonly id: number | 0;
-  readonly node_id: string;
-  readonly avatar_url: string;
-  readonly gravatar_id: string;
-  readonly url: string;
-  readonly html_url: string;
-  readonly followers_url: string;
-  readonly following_url: string;
-  readonly gists_url: string;
-  readonly starred_url: string;
-  readonly subscriptions_url: string;
-  readonly organizations_url: string;
-  readonly repos_url: string;
-  readonly events_url: string;
-  readonly received_events_url: string;
-  readonly type: string;
-  readonly site_admin: boolean;
+   readonly avatarUrl: string;
+   readonly gitHubPageUrl: string;
+   readonly id: number;
+   readonly login: string;
 }
 
 export enum ActionTypes {
@@ -26,7 +12,7 @@ export enum ActionTypes {
   FETCH_USERS_LOADING = 'users/loading',
   FETCH_USERS_SUCCESS = 'users/sucess',
   FETCH_USERS_ERROR = 'users/error',
-  SET_USERS = 'users/set',
+  SET_SELECTED_USER = 'users/set',
 
   FETCH_USER_EVENTS= 'user-events/fetch',
   FETCH_USER_EVENTS_LOADING= 'user-events/loading',

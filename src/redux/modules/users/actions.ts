@@ -12,7 +12,7 @@ export const fetchUsersSuccess = ({ users }: FetchUsersSuccess) => ({
   type: ActionTypes.FETCH_USERS_SUCCESS,
 });
 
-export const setUser = (payload: User) => ({ payload, type: ActionTypes.SET_USERS });
+export const setSelectedUser = (payload: User) => ({ payload, type: ActionTypes.SET_SELECTED_USER });
 
 /**
  * User Events Actions

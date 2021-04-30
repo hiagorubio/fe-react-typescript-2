@@ -13,7 +13,7 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators({
     fetchUsers: userActions.fetchUsers,
-    setUser: userActions.setUser,
+    setSelectedUser: userActions.setSelectedUser,
   }, dispatch);
 
 export const connector = connect(

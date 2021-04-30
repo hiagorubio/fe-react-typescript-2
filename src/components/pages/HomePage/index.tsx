@@ -9,7 +9,7 @@ import { Page } from '../../templates';
 import useStyles from './styles';
 import { Props, connector } from './types';
 
-const HomePage = ({ history, fetchUsers, users , setUser , since }: Props) => {
+const HomePage = ({ history, fetchUsers, users , setSelectedUser , since }: Props) => {
   const classes = useStyles();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,8 +23,8 @@ const HomePage = ({ history, fetchUsers, users , setUser , since }: Props) => {
 
   const handleClick = useCallback(
     user => {
-      setUser(user);
-      history.push(RoutesEnum.DETAILS_PAGE);
+    setSelectedUser(user);
+    history.push(RoutesEnum.DETAILS_PAGE);
     }, [history.push],
   );
 
@@ -45,8 +45,8 @@ const HomePage = ({ history, fetchUsers, users , setUser , since }: Props) => {
               <UserCard
                 onClick={() => handleClick(user)}
                 login={user.login}
-                avatarUrl={user.avatar_url}
-                gitHubPage={user.html_url}
+                avatarUrl={user.avatarUrl}
+                gitHubPage={user.gitHubPageUrl}
                 id={user.id}
               />
             </Grid>

@@ -11,7 +11,7 @@ import useStyles from './styles';
 import { Props, connector } from './types';
 
 export const DetailsPage = ({
-  history, user, fetchUserEvents, fetchUserRepos, userEventsLoading, userReposLoading,
+  history, selectUser, fetchUserEvents, fetchUserRepos, userEventsLoading, userReposLoading,
 }: Props) => {
     const handleBack = useCallback(
     () => {
@@ -22,11 +22,11 @@ export const DetailsPage = ({
     const classes = useStyles();
 
     useEffect(() => {
-      fetchUserEvents(user.login);
+      fetchUserEvents(selectUser.login);
     }, [fetchUserEvents]);
 
     useEffect(() => {
-      fetchUserRepos(user.login);
+      fetchUserRepos(selectUser.login);
     }, [fetchUserRepos]);
 
     return (
@@ -40,7 +40,7 @@ export const DetailsPage = ({
           <Grid container className={classes.container} >
             <Grid item xs={12} className={classes.item}>
 
-              <Profile user={user} />
+              <Profile user={selectUser} />
               <Repositories />
             </Grid>
             <Grid item xs={12} className={classes.item}>
