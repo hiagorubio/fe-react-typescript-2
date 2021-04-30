@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     padding: '20px',
   },
   item: {
-    backgroundColor: theme.palette.background.paper,
     margin: '0 auto',
     maxWidth: '45%',
     padding: '20px',

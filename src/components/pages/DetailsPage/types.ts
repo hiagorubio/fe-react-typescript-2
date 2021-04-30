@@ -7,6 +7,8 @@ import { State } from '../../../redux/types';
 
 const mapStateToProps = (state: State) => ({
   user: state.usersStore.selectUser,
+  userEventsLoading: state.usersStore.userEventsLoading,
+  userReposLoading: state.usersStore.userReposLoading,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) =>

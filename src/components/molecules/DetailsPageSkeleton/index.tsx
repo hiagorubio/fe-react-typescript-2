@@ -10,10 +10,10 @@ const DetailsPageSkeleton = () => {
   return (
     <Grid container className={classes.container}>
       <Grid item xs={12} className={classes.item}>
-        <Skeleton variant="rect" />
+        <Skeleton variant="rect" height="700"/>
       </Grid>
       <Grid item xs={12} className={classes.item}>
-          <Skeleton variant="rect" />
+          <Skeleton variant="rect" height="700"/>
       </Grid>
     </Grid>
   );
