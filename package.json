@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development parcel --port 3000 index.html",
+    "start": "cross-env NODE_ENV=development parcel --port 3000 index.html node src/server.js",
     "build": "cross-env NODE_ENV=production parcel build index.html",
     "lint": "npm run lint:scripts && npm run lint:declarations",
     "lint:scripts": "tslint './src/**/*.{ts,tsx}' --project tsconfig.json --fix --format stylish",
@@ -12,8 +12,8 @@
     "tsc": "tsc"
   },
   "engines": {
-    "node": ">=10",
-    "npm": ">=6"
+    "node": "14.x",
+    "npm": "7.x"
   },
   "dependencies": {
     "@material-ui/core": "4.11.3",
