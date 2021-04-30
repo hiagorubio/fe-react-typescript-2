@@ -9,8 +9,7 @@
     "lint:scripts": "tslint './src/**/*.{ts,tsx}' --project tsconfig.json --fix --format stylish",
     "lint:declarations": "tslint --project tsconfig.json --format stylish --fix './typings/**/*'",
     "dependencies:update": "npx npm-check --update --save-exact",
-    "tsc": "tsc",
-    "heroku-postbuild": "parcel build src/index.html"
+    "tsc": "tsc"
   },
   "engines": {
     "node": "14.x",
