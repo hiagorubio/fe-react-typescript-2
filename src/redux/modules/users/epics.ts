@@ -101,6 +101,7 @@ const buildUserRepos = (data: any): UserRepos => {
     repositories : data.map((item: any) => ({
         id: item?.id,
         name: item?.name,
+        repoUrl: item?.html_url,
        }),
     ),
   });

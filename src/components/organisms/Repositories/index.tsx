@@ -19,7 +19,7 @@ const Repositories = ({ classes, userRepos }: Props) => {
         {
           userRepos.repositories.map(repository => (
             <ListItem button key={repository.id}>
-                <Link href={repository.name}>
+                <Link href={repository.repoUrl}>
                   <Typography className={classes.value} variant="button">
                       {repository.name}
                   </Typography>

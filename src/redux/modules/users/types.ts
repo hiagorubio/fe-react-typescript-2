@@ -48,6 +48,7 @@ export interface UserEvent {
 export interface UserRepo {
   id: string;
   name: string;
+  repoUrl: string;
 }
 export interface UserRepos {
   repositories: UserRepo[];
