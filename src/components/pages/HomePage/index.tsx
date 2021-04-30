@@ -1,9 +1,9 @@
-import { CircularProgress, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React, { useCallback, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { RoutesEnum } from '../../../routes';
-import { UserCard } from '../../molecules';
+import { HomePageSkeleton, UserCard } from '../../molecules';
 import { Page } from '../../templates';
 
 import useStyles from './styles';
@@ -35,15 +35,9 @@ const HomePage = ({ history, fetchUsers, users , setUser , since }: Props) => {
         hasMore
         next={() => { fetchUsers(); }}
         loader={
-          <Grid
-            container
-            className={classes.loader}
-            justify="center"
-            alignItems="center"
-          >
-            <CircularProgress size="48px" />
-          </Grid>
+          <HomePageSkeleton />
         }
+        style={{ overflow: 'hidden' }}
       >
         <Grid container className={classes.users} spacing={2}>
           {users.map(user => (

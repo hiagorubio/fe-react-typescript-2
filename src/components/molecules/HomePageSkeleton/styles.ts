@@ -1,12 +1,15 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => createStyles({
-  loader: {
-    height: 'auto',
+  container: {
+    margin: 0,
+    overflow: 'hidden',
+    padding: '0 30px',
     width: '100%',
   },
-  users: {
-    padding: '30px',
+  skeleton: {
+    height: '100%',
+    width: '100%',
   },
 }),
 );
