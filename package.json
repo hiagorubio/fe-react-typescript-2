@@ -9,11 +9,12 @@
     "lint:scripts": "tslint './src/**/*.{ts,tsx}' --project tsconfig.json --fix --format stylish",
     "lint:declarations": "tslint --project tsconfig.json --format stylish --fix './typings/**/*'",
     "dependencies:update": "npx npm-check --update --save-exact",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "heroku-postbuild":"npm run build"
   },
   "engines": {
     "node": "14.x",
-    "npm": "7.x"
+    "npm": "6.x"
   },
   "dependencies": {
     "@material-ui/core": "4.11.3",
