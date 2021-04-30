@@ -5,12 +5,12 @@ import { ActionTypes, FetchUsersSuccess, User, UserEvent, UserRepos } from './ty
  */
 export const fetchUsers = () => ({ type: ActionTypes.FETCH_USERS });
 
+export const fetchUsersLoading = () => ({ type: ActionTypes.FETCH_USERS_LOADING });
+
 export const fetchUsersSuccess = ({ users }: FetchUsersSuccess) => ({
   payload: { users },
   type: ActionTypes.FETCH_USERS_SUCCESS,
 });
-
-export const fetchUsersError = () => ({ type: ActionTypes.FETCH_USERS_ERROR });
 
 export const setUser = (payload: User) => ({ payload, type: ActionTypes.SET_USERS });
 
@@ -19,6 +19,8 @@ export const setUser = (payload: User) => ({ payload, type: ActionTypes.SET_USER
  */
 
 export const fetchUserEvents = (user: string) => ({ user, type: ActionTypes.FETCH_USER_EVENTS });
+
+export const fetchUserEventsLoading = () => ({ type: ActionTypes.FETCH_USER_EVENTS_LOADING });
 
 export const fetchUsersEventsSuccess = (userEvents: UserEvent[]) => ({
   payload:  userEvents,
@@ -34,6 +36,8 @@ export const setUserEvents = (payload: User) => ({ payload, type: ActionTypes.SE
  */
 
 export const fetchUserRepos = (user: string) => ({ user, type: ActionTypes.FETCH_USER_REPOS });
+
+export const fetchUserReposLoading = () => ({ type: ActionTypes.FETCH_USER_REPOS_LOADING });
 
 export const fetchUsersReposSuccess = (userEvents: UserRepos) => ({
   payload:  userEvents,

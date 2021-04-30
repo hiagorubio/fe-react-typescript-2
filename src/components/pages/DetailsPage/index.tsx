@@ -23,7 +23,6 @@ export const DetailsPage = ({ history, user, fetchUserEvents, fetchUserRepos }: 
     }, [fetchUserEvents]);
 
     useEffect(() => {
-      console.log('LOG >>> ~ file: index.tsx ~ line 27 ~ useEffect ~ user.login', user.login);
       fetchUserRepos(user.login);
     }, [fetchUserRepos]);
 
