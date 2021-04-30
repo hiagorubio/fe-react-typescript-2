@@ -2,6 +2,7 @@ import { createStyles } from '@material-ui/core/styles';
 
 const styles = createStyles({
   button: {
+    height: '24px',
     position: 'absolute',
   },
   buttonText: {
