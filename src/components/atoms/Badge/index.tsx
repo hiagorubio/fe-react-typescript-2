@@ -16,6 +16,7 @@ export const Badge = ({ classes, backgroundColor, color, text, margin }: Badge) 
   <Grid
     className={classes.badge}
     style={{ backgroundColor, color, margin }}
+    data-testid="badge"
   >
     <Typography className={classes.text}>{text}</Typography>
   </Grid>

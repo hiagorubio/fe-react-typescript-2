@@ -3,7 +3,7 @@
     "module": "esnext",
     "target": "es5",
     "downlevelIteration": true,
-    "lib": ["es6", "dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "esnext"],
     "jsx": "react",
     "baseUrl": ".",
     "moduleResolution": "node",
@@ -16,7 +16,9 @@
     "noUnusedParameters": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "allowJs": true
+    "allowJs": true,
+    "esModuleInterop": true
   },
+  "exclude": ["node_modules"],
   "include": ["typings", "src"]
 }
